@@ -12,10 +12,20 @@
                 <%= link_to favorites_path(topic_id: topic.id), method: :post do %>
                   <%= image_tag 'icons/heart-black.png', class: 'topic-index-icon' %>
                 <% end %>
+              <% else %>
+                 <%= link_to favorites_path(topic_id: topic.id), method: :delete do %>
+                   <i class="fa fa-heart" style="color:red" aria-hidden="true"></i>
+                 <% end %>
+                 <%= topic.favorite_users.count %>
               <% end %>
-            <%= image_tag 'icons/comment.png', class: 'topic-index-icon' %>
+              <%= link_to new_comment_path(topic_id: topic.id), method: :get do %>
+                <%= image_tag 'icons/comment.png', class: 'topic-index-icon' %>
+              <% end %>
             <p class="topic-text">
               <%= topic.description %>
+            </p>
+            <p class="comment">コメント</p>
+            <p class="topic-text">
             </p>
           </div>
         </div>
