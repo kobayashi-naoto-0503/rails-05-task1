@@ -16,6 +16,12 @@ class TopicsController < ApplicationController
       render :new
     end
   end
+  
+  def destroy
+    Favorite.find_by(params[:topic_id]).destroy
+    flash[:success]="お気に入りを削除しました"
+    redirect_to topics_path
+  end
 
   private
   def topic_params
