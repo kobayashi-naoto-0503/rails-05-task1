@@ -18,15 +18,18 @@
                  <% end %>
                  <%= topic.favorite_users.count %>
               <% end %>
-              <%= link_to new_comment_path(topic_id: topic.id), method: :get do %>
+              <%= link_to comments_path(topic_id: topic.id), method: :get do %>
                 <%= image_tag 'icons/comment.png', class: 'topic-index-icon' %>
               <% end %>
             <p class="topic-text">
               <%= topic.description %>
             </p>
             <p class="comment">コメント</p>
-            <p class="topic-text">
-            </p>
+              <% topic.comments.each do |comment| %>
+                <p class="topic-text">
+                  <%= comment.content %>
+                </p>
+              <% end %>
           </div>
         </div>
       </div>
