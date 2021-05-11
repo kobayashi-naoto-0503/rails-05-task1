@@ -8,10 +8,18 @@
               <%= topic.user.name %>
             </h2>
             <%= image_tag topic.image.url %>
-            <%= image_tag 'icons/comment.png', class: 'topic-index-icon' %>
+            <%= link_to comments_path(topic_id: topic.id), method: :get do %>
+              <%= image_tag 'icons/comment.png', class: 'topic-index-icon' %>
+            <% end %>
             <p class="topic-text">
               <%= topic.description %>
             </p>
+            <p class="comment">コメント</p>
+              <% topic.comments.each do |comment| %>
+                <p class="topic-text">
+                  <%= comment.content %>
+                </p>
+              <% end %>
           </div>
         </div>
       </div>
