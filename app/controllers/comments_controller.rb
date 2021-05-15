@@ -6,7 +6,6 @@ class CommentsController < ApplicationController
   
   def create
      @comment = current_user.comments.new(comment_params) #@commentはcontent,user_id,topic_idを保存している
-    binding.pry
     if @comment.save
       redirect_to topics_path, success: '投稿に成功しました'
     else
