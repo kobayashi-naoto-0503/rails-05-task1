@@ -1,10 +1,8 @@
 class SessionsController < ApplicationController
   skip_before_action :user_logged_in? #app_contollerでかいたdef user_logged_in?をスキップして適応させていない。
+  before_action :forbid_login_user
   
   def new
-    if user_logged_in?
-      redirect_to commens_path
-    end
   end
 
   def create
