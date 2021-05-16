@@ -1,4 +1,5 @@
 class TopicsController < ApplicationController
+  skip_before_action :forbid_login_user
   def index
     @topics = Topic.all.includes(:favorite_users)
   end
