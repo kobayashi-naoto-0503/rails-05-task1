@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  skip_before_action :forbid_login_user
+  
   def new
     @topic = Topic.find_by(params[:topic_id]) #投稿画面に移行するときtopic_idは持ってこれないため、find_byでTopicモデルから探してインスタンス変数に入れて
     @comment = Comment.new

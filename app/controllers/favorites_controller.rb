@@ -1,5 +1,5 @@
 class FavoritesController < ApplicationController
-  skip_before_action :forbid_login_user
+  
   def index
     @favorite_topics=current_user.favorite_topics
   end

@@ -1,11 +1,18 @@
 class TopicsController < ApplicationController
-  skip_before_action :forbid_login_user
+  
   def index
     @topics = Topic.all.includes(:favorite_users)
   end
+  
   def new
     @topic = Topic.new
   end
+  
+  def edit
+    @topic = Topic.find(params[:id])
+  end
+  
+
 
   def create
     @topic = current_user.topics.new(topic_params)
