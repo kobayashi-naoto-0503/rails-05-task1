@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
   before_action :user_logged_in?
-  before_action :forbid_login_user
   
   protect_from_forgery with: :exception
   
@@ -32,13 +31,6 @@ class ApplicationController < ActionController::Base
   def reset_user_session #リセットしたらsession[:user_id]と@current_userを空にする。
     session[:user_id] = nil
     @current_user = nil
-  end
-  
-  def forbid_login_user #ログインしている時の制限。forbidは、禁止するという意味。
-    if session[:user_id] #もし、session_contollerにlog_inメソッドで、session[:user_id]にログイン情報を保存しているのなら。
-      flash[:notice]="ログイン中です"
-      redirect_to topics_path #topicsへ行くようにする。コメント投稿のページにいくにはtopics_idがないからいけなかった、どうすればいい？
-    end
   end
   
 end

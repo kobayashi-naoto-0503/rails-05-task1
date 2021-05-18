@@ -21,6 +21,9 @@
               <%= link_to comments_path(topic_id: topic.id), method: :get do %>
                 <%= image_tag 'icons/comment.png', class: 'topic-index-icon' %>
               <% end %>
+              <%= link_to edit_topic_path(current_user), method: :get do %>
+                <i class="fa fa-edit fa-lg" style="color:black"></i>
+              <% end %>
             <p class="topic-text">
               <%= topic.description %>
             </p>
