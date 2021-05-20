@@ -9,10 +9,14 @@ class TopicsController < ApplicationController
   end
   
   def edit
-    @topic = Topic.find(params[:id])
+    @topic = Topic.find(params[:id]) #edit.htmlにtopic.id（保存してある投稿データ）を渡している。
   end
   
-
+  def update
+    @topic = Topic.find(params[:id]) #編集したデータを受け取っている。
+    @topic.update(topic_params) #受け取ったtopic_paramsのデータ（編集されたデータ）をDBに更新している。
+    redirect_to topics_path #更新し終わったらtopicのindex.htmlへ
+  end
 
   def create
     @topic = current_user.topics.new(topic_params)
