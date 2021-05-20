@@ -21,7 +21,7 @@
               <%= link_to comments_path(topic_id: topic.id), method: :get do %>
                 <%= image_tag 'icons/comment.png', class: 'topic-index-icon' %>
               <% end %>
-              <%= link_to edit_topic_path(current_user), method: :get do %>
+              <%= link_to edit_topic_path(topic.id), method: :get do %> <%# topic_id: topic.idだとエラーになってtopic.idだとedit.htmlにtopicのid渡してくれた　%>
                 <i class="fa fa-edit fa-lg" style="color:black"></i>
               <% end %>
             <p class="topic-text">
