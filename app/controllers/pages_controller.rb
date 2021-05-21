@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   skip_before_action :user_logged_in?
+  before_action :forbid_login_user, {only: [:index]}
 
   def index
   end
@@ -9,4 +10,5 @@ class PagesController < ApplicationController
   
   def link
   end
+  
 end

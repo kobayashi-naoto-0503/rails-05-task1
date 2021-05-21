@@ -21,13 +21,6 @@ class SessionsController < ApplicationController
     log_out
     redirect_to root_url,info:'ログアウトしました'
   end
-  
-  def forbid_login_user #ログインしている時の制限。forbidは、禁止するという意味。
-    if session[:user_id] #もし、session_contollerにlog_inメソッドで、session[:user_id]にログイン情報を保存しているのなら。
-      flash[:notice]="ログイン中です"
-      redirect_to topics_path #topicsへ行くようにする。コメント投稿のページにいくにはtopics_idがないからいけなかった、どうすればいい？
-    end
-  end
 
   private
   def log_in(user)
