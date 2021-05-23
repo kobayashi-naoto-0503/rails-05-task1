@@ -1,4 +1,5 @@
 class TopicsController < ApplicationController
+  before_action :user_logged_in?
   
   def index
     @topics = Topic.all.includes(:favorite_users)
@@ -17,6 +18,12 @@ class TopicsController < ApplicationController
     @topic.update(topic_params) #受け取ったtopic_paramsのデータ（編集されたデータ）をDBに更新している。
     redirect_to topics_path #更新し終わったらtopicのindex.htmlへ
   end
+  
+  def destroy
+    @topic = Topic.find(params[:id])
+    @topic.destroy
+    redirect_to topics_path
+  end
 
   def create
     @topic = current_user.topics.new(topic_params)
@@ -26,12 +33,6 @@ class TopicsController < ApplicationController
       flash.now[:danger] = "投稿に失敗しました"
       render :new
     end
-  end
-  
-  def destroy
-    Favorite.find_by(params[:topic_id]).destroy
-    flash[:success]="お気に入りを削除しました"
-    redirect_to topics_path
   end
 
   private
