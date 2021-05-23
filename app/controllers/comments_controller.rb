@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_action :user_logged_in?
   
   def new
     @topic = Topic.find_by(params[:topic_id]) #投稿画面に移行するときtopic_idは持ってこれないため、find_byでTopicモデルから探してインスタンス変数に入れて

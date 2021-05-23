@@ -14,8 +14,9 @@
         </div>
         <% if logged_in? %>
           <%= f.submit '更新', class: 'btn btn-black btn-block' %> <%# submitは自動でupdateかcreateかを判断してくれる。formメソッドのおかげ %>
-          <button type="button" class='btn btn-black btn-block'>削除</button> <%# 削除の機能を追加する　%>
-          <a class='btn btn-black btn-block' href="/topics/" role="button">戻る</a> 
+          <%= link_to "削除する", "/topics/#{@topic.id}", method: :delete %>
+          <%# 削除する際のroutingはpathが指定されていなかったら、urlの指定（"/topics/#{@topic.id}"）で書かないとdestroyアクションを呼べない %>
+          <%= link_to "戻る", topics_path %>
         <% end %>
         
         <% end %>

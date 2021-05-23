@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-  skip_before_action :user_logged_in? #app_contollerでかいたdef user_logged_in?をスキップして適応させていない。
   before_action :forbid_login_user, {only: [:new]}
   #↑特定のViewをログイン時に表示させないようにするときbefore_actionで適応させるアクションをonlyで指定する。指定しないとコントローラー内全てに適応される。
   
