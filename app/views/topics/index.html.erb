@@ -21,15 +21,18 @@
               <%= link_to comments_path(topic_id: topic.id), method: :get do %>
                 <%= image_tag 'icons/comment.png', class: 'topic-index-icon' %>
               <% end %>
-              <%= link_to edit_topic_path(id: topic.id), method: :get do %> <%# topic_id: topic.idだとエラーになってtopic.idだとedit.htmlにtopicのid渡してくれた　%>
-                <i class="fa fa-edit fa-lg" style="color:black"></i>
+              <% if topic.user == current_user %> <%# ログインしているユーザーとトピックのユーザーが同じであるかどうか %>
+                <%= link_to edit_topic_path(id: topic.id), method: :get do %> <%# topic_id: topic.idだとエラーになってtopic.idだとedit.htmlにtopicのid渡してくれた　%>
+                  <i class="fa fa-edit fa-lg" style="color:black"></i>
+                <% end %>
               <% end %>
             <p class="topic-text">
               <%= topic.description %>
             </p>
             <p class="comment">コメント</p>
               <% topic.comments.each do |comment| %>
-                <p class="topic-text">
+                <p class="topic-comment">
+                  <a herf = "#", class="comment-name"><%= comment.user.name %></a>
                   <%= comment.content %>
                 </p>
               <% end %>

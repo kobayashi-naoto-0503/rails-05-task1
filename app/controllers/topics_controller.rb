@@ -11,6 +11,9 @@ class TopicsController < ApplicationController
   
   def edit
     @topic = Topic.find(params[:id]) #edit.htmlにtopic.id（保存してある投稿データ）を渡している。
+    unless @topic.user == current_user #unlessでcurrent_user(ログインしている人)と@topic.user(トピックを投稿したひと。トピックのユーザー)でなければと書いてある。
+      redirect_to topics_path
+    end
   end
   
   def update
