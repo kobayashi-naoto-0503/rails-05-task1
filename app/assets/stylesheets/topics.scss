@@ -20,7 +20,6 @@
   background-color: #fafafa;
   .topic-index-single {
     background-color: #fff;
-    padding-top: 20px;
     padding-bottom: 20px;
     margin-top: 30px;
     border: 1px solid #e6ecf0;
@@ -29,6 +28,11 @@
       padding-right: 20px;
       padding-left: 20px;
     }
+    .topic-time{
+      font-size:15px;
+      padding-right: 20px;
+      padding-left: 20px;
+      }
 
     .topic-text {
       padding-right: 20px;

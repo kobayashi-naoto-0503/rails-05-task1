@@ -3,6 +3,8 @@ class TopicsController < ApplicationController
   
   def index
     @topics = Topic.all.includes(:favorite_users)
+    @topics = Topic.all.order(created_at: :desc) #新しい順に並べる。descは降順（逆から並べる。３、２、１、の順の様に）、created_atは作成日時。orderメソッドとは、データベースから取得してきた値を並び替えることができるメソッドです。
+    
   end
   
   def new
