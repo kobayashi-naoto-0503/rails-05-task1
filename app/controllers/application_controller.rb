@@ -40,4 +40,10 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  def edit_restrict
+    @topic = Topic.find(params[:id])
+    unless @topic.user == current_user #unlessでcurrent_user(ログインしている人)と@topic.user(トピックを投稿したひと。トピックのユーザー)でなければと書いてある。
+      redirect_to topics_path
+    end
+  end
 end

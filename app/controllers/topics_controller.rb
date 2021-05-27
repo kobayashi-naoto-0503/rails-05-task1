@@ -1,5 +1,6 @@
 class TopicsController < ApplicationController
   before_action :user_logged_in?
+  before_action :edit_restrict,{only:[:edit]}
   
   def index
     @topics = Topic.all.includes(:favorite_users)
@@ -12,10 +13,7 @@ class TopicsController < ApplicationController
   end
   
   def edit
-    @topic = Topic.find(params[:id]) #edit.htmlにtopic.id（保存してある投稿データ）を渡している。
-    unless @topic.user == current_user #unlessでcurrent_user(ログインしている人)と@topic.user(トピックを投稿したひと。トピックのユーザー)でなければと書いてある。
-      redirect_to topics_path
-    end
+
   end
   
   def update
