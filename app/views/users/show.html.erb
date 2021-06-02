@@ -1,0 +1,48 @@
+<div class="topic-index-wrapper">
+  <div class="container">
+    <% @topic.each do |topic| %>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="topic-index-single">
+            <h2 class="topic-author">
+              <%= topic.user.name %>
+            </h2>
+            <div class="topic-time">
+              <%= l topic.created_at, format: :long %>
+              <%# lメソッドで日時を取得できるが、日本表記にするためgem 'i18n_generators'をインストールし、config/locales/jaymlの設定を使い回す。%>
+            </div>
+            <%= image_tag topic.image.url %>
+              <% if !topic.favorite_users.include?(current_user) %>
+                <%= link_to favorites_path(topic_id: topic.id), method: :post do %>
+                  <%= image_tag 'icons/heart-black.png', class: 'topic-index-icon' %>
+                <% end %>
+              <% else %>
+                 <%= link_to favorites_path(topic_id: topic.id), method: :delete do %>
+                   <i class="fa fa-heart" style="color:red" aria-hidden="true"></i>
+                 <% end %>
+                 <%= topic.favorite_users.count %>
+              <% end %>
+              <%= link_to comments_path(topic_id: topic.id), method: :get do %>
+                <%= image_tag 'icons/comment.png', class: 'topic-index-icon' %>
+              <% end %>
+              <% if topic.user == current_user %> <%# ログインしているユーザーとトピックのユーザーが同じであるかどうか %>
+                <%= link_to edit_topic_path(id: topic.id), method: :get do %> <%# topic_id: topic.idだとエラーになってtopic.idだとedit.htmlにtopicのid渡してくれた　%>
+                  <i class="fa fa-edit fa-lg" style="color:black"></i>
+                <% end %>
+              <% end %>
+            <p class="topic-text">
+              <%= topic.description %>
+            </p>
+            <p class="comment">コメント</p>
+              <% topic.comments.each do |comment| %>
+                <p class="topic-comment">
+                  <a herf = "#", class="comment-name"><%= comment.user.name %></a>
+                  <%= comment.content %>
+                </p>
+              <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
