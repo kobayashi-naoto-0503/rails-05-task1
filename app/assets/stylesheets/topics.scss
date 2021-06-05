@@ -18,6 +18,22 @@
 .topic-index-wrapper {
   padding-top: 70px;
   background-color: #fafafa;
+  position: relative;
+  .user-profile{
+    text-align: center;
+    width: 250px;
+    height: 300px;
+    background: #ffffff;
+    float: left;
+    position: absolute;
+		  top: 150px;
+		  left: 100px;
+    }
+    .profile-image{
+      width: 230px;
+      height: 210px;
+      border-radius: 50%;
+    }
   .topic-index-single {
     background-color: #fff;
     padding-bottom: 20px;
