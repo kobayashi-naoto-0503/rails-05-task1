@@ -1,4 +1,16 @@
 <div class="topic-index-wrapper">
+  <div class="user-profile">
+      <%= image_tag 'icons/7736.jpg', class: 'profile-image' %>
+      <p class ="profile-name">
+        ここに名前を入れる
+      </p>
+      <p class ="profile-hobby">
+        趣味を入れる
+      </p>
+      <p class ="profile-greeting">
+        挨拶文を入れる
+      </p>
+  </div>
   <div class="container">
     <% @topic.each do |topic| %>
       <div class="row">
@@ -36,7 +48,9 @@
             <p class="comment">コメント</p>
               <% topic.comments.each do |comment| %>
                 <p class="topic-comment">
-                  <a herf = "#", class="comment-name"><%= comment.user.name %></a>
+                  <%= link_to user_path(comment.user_id) do %>
+                    <%= comment.user.name %>
+                  <% end %>
                   <%= comment.content %>
                 </p>
               <% end %>

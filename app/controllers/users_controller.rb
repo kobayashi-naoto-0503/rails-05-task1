@@ -4,9 +4,12 @@ class UsersController < ApplicationController
   end
   
   def show
-    
-    @topic = current_user.topics
+    user = User.find(params[:id])
+    @topic = user.topics
   end
+  #コメント投稿者の名前から、投稿者のマイページに行くように実装したとき、リンクをuser_path(comment.user_id)にしてurlはちゃんと投稿者のidを取得していたが、
+  #@topic = current_user.topicsにしていたため、viewのeachが@topicで、ログイン者のページが表示される様になっていた。
+  #user = User.find(params[:id])によって、各viewのリンクuser_path(id)を指定することによりそのidを取得し@topicに入れている。よって、userごとのページに行ける様になる。
 
   def create
     @user = User.new(user_params)

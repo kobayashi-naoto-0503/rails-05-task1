@@ -36,7 +36,9 @@
             <p class="comment">コメント</p>
               <% topic.comments.each do |comment| %>
                 <p class="topic-comment">
-                  <a herf = "#", class="comment-name"><%= comment.user.name %></a>
+                  <%= link_to user_path(comment.user_id) do %>
+                    <%= comment.user.name %>
+                  <% end %><%# コメント投稿者の名前を表示させている %>
                   <%= comment.content %>
                 </p>
               <% end %>
