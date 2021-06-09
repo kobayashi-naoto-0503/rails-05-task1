@@ -1,13 +1,18 @@
 <div class="topic-index-wrapper">
   <div class="user-profile">
-      <%= image_tag 'icons/7736.jpg', class: 'profile-image' %>
+      <%= image_tag 'icons/user-regular.svg', class: 'profile-image' %>
       <p class ="profile-name">
-        ここに名前を入れる
+        <h5><font color="#4169e1">Name</font></h5>
+        <%= @user.name %>
+        <%# この@userには、showメソッドの @user = User.find_by(id: params[:id])で、検索したidのUserモデルのデータが全て入っている。
+        このidは、このページに飛ぶときに取得したidで検索している。よって@user.nameで、@user内のnameカラムのデータを呼んでいる。%>
       </p>
       <p class ="profile-hobby">
+        <h5><font color="#4169e1">Hobby</font></h5>
         趣味を入れる
       </p>
       <p class ="profile-greeting">
+        <h5><font color="#4169e1">Greeting</font></h5>
         挨拶文を入れる
       </p>
   </div>

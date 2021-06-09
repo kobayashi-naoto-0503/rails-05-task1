@@ -46,4 +46,5 @@ class ApplicationController < ActionController::Base
       redirect_to topics_path
     end
   end
+  
 end
