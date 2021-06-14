@@ -10,6 +10,7 @@ class TopicsController < ApplicationController
   
   def new
     @topic = Topic.new
+    @topic.image_files.new
   end
   
   def edit
@@ -29,7 +30,8 @@ class TopicsController < ApplicationController
   end
 
   def create
-    @topic = current_user.topics.new(topic_params)
+    @topic = Topic.new(topic_params)
+    binding.pry
     if @topic.save
       redirect_to topics_path, success: '投稿に成功しました'
     else
@@ -40,6 +42,6 @@ class TopicsController < ApplicationController
 
   private
   def topic_params
-    params.require(:topic).permit(:image, :description)
+    params.require(:topic).permit(:description, image_files_attributes: [:image]).merge(user_id: current_user.id)
   end
 end
