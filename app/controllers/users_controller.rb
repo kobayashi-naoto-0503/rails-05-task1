@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by(id: params[:id])
     user = User.find(params[:id])
-    @topic = user.topics
+    @topic = user.topics.order(created_at: :desc)
   end
   #コメント投稿者の名前から、投稿者のマイページに行くように実装したとき、リンクをuser_path(comment.user_id)にしてurlはちゃんと投稿者のidを取得していたが、
   #@topic = current_user.topicsにしていたため、viewのeachが@topicで、ログイン者のページが表示される様になっていた。
