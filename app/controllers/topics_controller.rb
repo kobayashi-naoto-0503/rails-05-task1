@@ -32,11 +32,6 @@ class TopicsController < ApplicationController
   def create
     @topic = Topic.new(topic_params)
     if @topic.save
-      params[:image_files]['image'].each do |image|
-        @image_file = @topic.image_files.new(image: image)
-        binding.pry
-        @image_file.save
-      end
       redirect_to topics_path, success: '投稿に成功しました'
     else
       flash.now[:danger] = "投稿に失敗しました"

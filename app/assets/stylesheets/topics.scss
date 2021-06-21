@@ -36,6 +36,11 @@
       margin-bottom: 10px;
       border:solid 0.3px;
       border-color: #f0f8ff;
+      position: relative;
+    }
+    i{
+      display: flex;
+      justify-content: flex-end;
     }
     .profile-name{
       
