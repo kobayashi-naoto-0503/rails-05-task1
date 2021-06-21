@@ -1,6 +1,11 @@
 <div class="topic-index-wrapper">
   <div class="user-profile">
       <%= image_tag 'icons/user-regular.svg', class: 'profile-image' %>
+        <% if @user == current_user%> <%# ログインしているユーザーとトピックのユーザーが同じであるかどうか %>
+          <%#= link_to edit_user_path(@user), method: :get do %> <%# topic_id: topic.idだとエラーになってtopic.idだとedit.htmlにtopicのid渡してくれた　%>
+            <i class="fa fa-edit fa-lg" style="color:black"></i>
+          <%# end %>
+        <% end %>
       <p class ="profile-name">
         <h5><font color="#4169e1">Name</font></h5>
         <%= @user.name %>
