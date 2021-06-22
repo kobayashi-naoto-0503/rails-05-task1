@@ -1,11 +1,17 @@
 <div class="topic-index-wrapper">
   <div class="user-profile">
       <%= image_tag 'icons/user-regular.svg', class: 'profile-image' %>
-        <% if @user == current_user%> <%# ログインしているユーザーとトピックのユーザーが同じであるかどうか %>
-          <%#= link_to edit_user_path(@user), method: :get do %> <%# topic_id: topic.idだとエラーになってtopic.idだとedit.htmlにtopicのid渡してくれた　%>
-            <i class="fa fa-edit fa-lg" style="color:black"></i>
-          <%# end %>
-        <% end %>
+      <%#= image_tag profile.image.url, class: 'profile-image' %>
+        <div class="profile_tag">
+          <% if @user == current_user%> <%# ログインしているユーザーとトピックのユーザーが同じであるかどうか %>
+            <%= link_to new_profile_path, method: :get do %> <%#profileの作成へリンクさせる%>
+              <i class="far fa-user-circle" style="color:black"></i>
+            <% end %>
+            <%#= link_to edit_profile_path(), method: :get do %> <%# profileの編集へリンクさせる　%>
+              <i class="fa fa-edit fa-lg" style="color:black"></i>
+            <%# end %>
+          <% end %>
+        </div>
       <p class ="profile-name">
         <h5><font color="#4169e1">Name</font></h5>
         <%= @user.name %>
@@ -14,11 +20,15 @@
       </p>
       <p class ="profile-hobby">
         <h5><font color="#4169e1">Hobby</font></h5>
-        趣味を入れる
+        <%# if @profile.hobby.nil? %>
+          <%#= "None" %>
+        <%# else %>
+          <%#= @profile.hobby %>
+        <%# end %>
       </p>
       <p class ="profile-greeting">
         <h5><font color="#4169e1">Greeting</font></h5>
-        挨拶文を入れる
+        <%#= @profile.greeting %>
       </p>
   </div>
   <div class="container">

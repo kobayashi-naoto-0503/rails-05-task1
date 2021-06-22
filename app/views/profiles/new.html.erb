@@ -1,0 +1,26 @@
+<div class="topic-new-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <h1 class="text-center">Profile new</h1>
+        <%= form_for @profile do |f| %>
+          <div class="form-group">
+            <%= f.label :image %>
+            <%= f.file_field :image %>
+          </div>
+        <div class="form-group">
+          <%= f.label :hobby %>
+          <%= f.text_area:hobby, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :greeting %>
+          <%= f.text_area:greeting, class: 'form-control' %>
+        </div>
+        <% if logged_in? %>
+        <%= f.submit '投稿', class: 'btn btn-black btn-block' %>
+        <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

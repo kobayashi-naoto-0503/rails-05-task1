@@ -38,9 +38,13 @@
       border-color: #f0f8ff;
       position: relative;
     }
-    i{
+    .profile_tag{
       display: flex;
       justify-content: flex-end;
+    }
+    i{
+      margin-right: 10px;
+      font-size: 20px;
     }
     .profile-name{
       
