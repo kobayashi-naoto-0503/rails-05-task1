@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
+  get 'profiles/new'
+  get 'profile/new'
   get 'sessions/new'
   root 'pages#index'
   get 'pages/help'
   get 'pages/link'
   resources :users
   resources :topics
-  
+  resources :profiles
   
   get 'login', to:'sessions#new'
   post 'login', to:'sessions#create'
