@@ -41,7 +41,7 @@ class TopicsController < ApplicationController
 
   private
   def topic_params
-    params.require(:topic).permit(:description, image_files_attributes: [:image]).merge(user_id: current_user.id)
+    params.require(:topic).permit(:description, image_files_attributes: [:images]).merge(user_id: current_user.id)
   end
   
 end

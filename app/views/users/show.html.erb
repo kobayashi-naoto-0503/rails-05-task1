@@ -1,7 +1,7 @@
 <div class="topic-index-wrapper">
   <div class="user-profile">
-      <%= image_tag 'icons/user-regular.svg', class: 'profile-image' %>
-      <%#= image_tag profile.image.url, class: 'profile-image' %>
+      <%#= image_tag 'icons/user-regular.svg', class: 'profile-image' %>
+      <%= image_tag @profile.photo.url, class: 'profile-image' %>
         <div class="profile_tag">
           <% if @user == current_user%> <%# ログインしているユーザーとトピックのユーザーが同じであるかどうか %>
             <%= link_to new_profile_path, method: :get do %> <%#profileの作成へリンクさせる%>
@@ -23,12 +23,12 @@
         <%# if @profile.hobby.nil? %>
           <%#= "None" %>
         <%# else %>
-          <%#= @profile.hobby %>
+          <%= @profile.hobby %>
         <%# end %>
       </p>
       <p class ="profile-greeting">
         <h5><font color="#4169e1">Greeting</font></h5>
-        <%#= @profile.greeting %>
+        <%= @profile.greeting %>
       </p>
   </div>
   <div class="container">
