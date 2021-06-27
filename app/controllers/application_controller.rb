@@ -46,6 +46,12 @@ class ApplicationController < ActionController::Base
       redirect_to topics_path
     end
   end
-        
   
+  def profile_judg
+    if @profil.nil?
+      @profile = "None"
+    else
+      @profile = Profile.find_by(params[:user_id])
+    end
+  end
 end
