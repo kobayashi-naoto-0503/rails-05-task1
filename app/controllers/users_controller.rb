@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  before_action:profile_judg, {only: [:show]}
   
   def new
     @users = User.new
@@ -7,13 +6,12 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find_by(id: params[:id])
-    user = User.find(params[:id])
-    @topic = user.topics.order(created_at: :desc)
-    @profile = Profile.find_by(params[:user_id])
+    @topics = @user.topics.order(created_at: :desc)
+    @profile = @user.profile
   end
-  #コメント投稿者の名前から、投稿者のマイページに行くように実装したとき、リンクをuser_path(comment.user_id)にしてurlはちゃんと投稿者のidを取得していたが、
-  #@topic = current_user.topicsにしていたため、viewのeachが@topicで、ログイン者のページが表示される様になっていた。
-  #user = User.find(params[:id])によって、各viewのリンクuser_path(id)を指定することによりそのidを取得し@topicに入れている。よって、userごとのページに行ける様になる。
+  #params[:id]は画面上で取得したidを入れている。よって、@userはparamsで取得したidをfind_byでUserモデルから取ってきたデータが入っている。
+  #@profileは@userのidを使ってprofileモデルのデータを取ってきたいので、modelsでアソシエーション組んであれば、@user.profileの書き方でOK
+  #アソシエーションくんでなければ、find_by(user_id: @user.id)で探してあげないと取ってこれない。
 
   def create
     @user = User.new(user_params)

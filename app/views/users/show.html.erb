@@ -1,8 +1,12 @@
 <div class="topic-index-wrapper">
   <div class="user-profile">
-      <%#= image_tag 'icons/user-regular.svg', class: 'profile-image' %>
+    <% if @profile.nil? %>
+      <%= image_tag 'icons/user-regular.svg', class: 'profile-image' %>
+    <% else %>
       <%= image_tag @profile.photo.url, class: 'profile-image' %>
-        <div class="profile_tag">
+    <% end %>
+    
+    <div class="profile_tag">
           <% if @user == current_user%> <%# ログインしているユーザーとトピックのユーザーが同じであるかどうか %>
             <%= link_to new_profile_path, method: :get do %> <%#profileの作成へリンクさせる%>
               <i class="far fa-user-circle" style="color:black"></i>
@@ -11,7 +15,7 @@
               <i class="fa fa-edit fa-lg" style="color:black"></i>
             <%# end %>
           <% end %>
-        </div>
+    </div>
       <p class ="profile-name">
         <h5><font color="#4169e1">Name</font></h5>
         <%= @user.name %>
@@ -20,19 +24,24 @@
       </p>
       <p class ="profile-hobby">
         <h5><font color="#4169e1">Hobby</font></h5>
-        <%# if @profile.hobby.nil? %>
-          <%#= "None" %>
-        <%# else %>
+        <% if @profile.nil? %>
+          <%= "None" %>
+        <% else %>
           <%= @profile.hobby %>
-        <%# end %>
+        <% end %>
+        <%#= @profile.nil? ? "None" : @profile.hobby %>
       </p>
       <p class ="profile-greeting">
         <h5><font color="#4169e1">Greeting</font></h5>
-        <%= @profile.greeting %>
+        <% if @profile.nil? %>
+          <%= "None" %>
+        <% else %>
+          <%= @profile.greeting %>
+        <% end %>
       </p>
   </div>
   <div class="container">
-    <% @topic.each do |topic| %>
+    <% @topics.each do |topic| %>
       <div class="row">
         <div class="col-md-6 col-md-offset-3">
           <div class="topic-index-single">
